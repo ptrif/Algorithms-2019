@@ -19,6 +19,7 @@ abstract class AbstractDynamicTests {
         val expectedLength2 = """ дд саы чтых,
 евшнео ваа се сви дн.
         """.trimIndent().length
+
         assertEquals(
             expectedLength2, longestCommonSubSequence(
                 """
@@ -34,6 +35,21 @@ abstract class AbstractDynamicTests {
 Наследник всех своих родных.
                 """.trimIndent()
             ).length, "Answer must have length of $expectedLength2"
+        )
+
+        val expectedLength3 = """ Эни беники аки
+        """.trimIndent().length
+        assertEquals(
+            expectedLength3, longestCommonSubSequence(
+                """
+Эники беники ели вареники 
+
+                """.trimIndent(),
+                """
+Эни бени
+рикки такки
+                """.trimIndent()
+            ).length, "Answer must have length of $expectedLength3"
         )
     }
 
@@ -55,6 +71,13 @@ abstract class AbstractDynamicTests {
                 )
             )
         )
+        assertEquals(
+            listOf(-12, 44, 57, 1024), longestIncreasingSubSequence(
+                listOf(
+                    -12, 44, 57, -100, -13, 1, 15, 1024, 55
+                )
+            )
+        )
     }
 
     fun shortestPathOnField(shortestPathOnField: (String) -> Int) {
@@ -64,6 +87,8 @@ abstract class AbstractDynamicTests {
         assertEquals(28, shortestPathOnField("input/field_in4.txt"))
         assertEquals(222, shortestPathOnField("input/field_in5.txt"))
         assertEquals(15, shortestPathOnField("input/field_in6.txt"))
+        assertEquals(-12185, shortestPathOnField("input/field_inMY.txt"))
+        assertEquals(0, shortestPathOnField("input/field_inEMPTY"))
     }
 
 }
